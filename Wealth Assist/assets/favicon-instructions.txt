@@ -1,0 +1,14 @@
+FAVICON INSTRUCTIONS
+
+To complete the website, please create a favicon.png file and place it in the assets directory.
+
+Recommended specifications:
+- Size: 32x32 pixels or 64x64 pixels
+- Format: PNG with transparency
+- Design: Use the Wealth Assist logo or a simplified version
+- Colors: Use the brand colors (cyan #00d4ff and magenta #ff007a)
+
+Once created, the favicon will automatically be used by the website as it's already linked in the HTML head:
+<link rel="icon" type="image/png" href="assets/favicon.png">
+
+Alternative formats like .ico can also be used by changing the link tag in index.html.
