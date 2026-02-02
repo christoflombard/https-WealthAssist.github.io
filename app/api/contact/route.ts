@@ -16,14 +16,14 @@ export async function POST(request: Request) {
 
         // 2. Insert into Supabase (using Service Role for full access)
         const supabase = await createServiceRoleClient();
-        const { data: leadData, error: dbError } = await supabase
+        const { data: leadData, error: dbError } = await (supabase as any)
             .from('leads')
             .insert({
                 name,
                 email,
                 message,
                 interest,
-            } as any)
+            })
             .select()
             .single();
 

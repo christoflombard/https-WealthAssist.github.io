@@ -65,13 +65,13 @@ export function RegistrationWizard({ onSuccess, onLoginClick }: RegistrationWiza
             if (authData.user) {
                 // 3. Update Profile with Score
                 // Wait a moment for trigger to create profile (optional, or use upsert)
-                const { error: profileError } = await supabase
+                const { error: profileError } = await (supabase as any)
                     .from('profiles')
                     .update({
                         lead_score: result.score,
                         lead_priority: result.priority,
                         onboarding_answers: answers,
-                        tier: 'REGISTERED' // Explicitly set
+                        tier: 'REGISTERED'
                     })
                     .eq('id', authData.user.id)
 

@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 
         const supabase = await createServiceRoleClient();
 
-        const { data, error } = await supabase
+        const { data, error } = await (supabase as any)
             .from('opportunities')
             .insert({
                 ...body,
@@ -44,7 +44,7 @@ export async function GET() {
     try {
         const supabase = await createServiceRoleClient();
 
-        const { data, error } = await supabase
+        const { data, error } = await (supabase as any)
             .from('opportunities')
             .select('*')
             .order('created_at', { ascending: false });
