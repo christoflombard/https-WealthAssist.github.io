@@ -23,7 +23,7 @@ export async function POST(request: Request) {
                 email,
                 message,
                 interest,
-            })
+            } as any)
             .select()
             .single();
 

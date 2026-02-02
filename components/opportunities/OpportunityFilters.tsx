@@ -55,7 +55,7 @@ export function OpportunityFilters({ filters, onFilterChange, provinces }: Filte
             placeholder="Search by location, deal code..."
             value={filters.search}
             onChange={(e) => onFilterChange({ ...filters, search: e.target.value })}
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900 placeholder-gray-400"
           />
         </div>
 
@@ -63,7 +63,7 @@ export function OpportunityFilters({ filters, onFilterChange, provinces }: Filte
           <select
             value={filters.productType}
             onChange={(e) => onFilterChange({ ...filters, productType: e.target.value as ProductType | '' })}
-            className="px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
+            className="px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white text-gray-900"
           >
             <option value="">All Types</option>
             {productTypes.map(t => (
@@ -74,7 +74,7 @@ export function OpportunityFilters({ filters, onFilterChange, provinces }: Filte
           <select
             value={filters.province}
             onChange={(e) => onFilterChange({ ...filters, province: e.target.value })}
-            className="px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
+            className="px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white text-gray-900"
           >
             <option value="">All Provinces</option>
             {provinces.map(p => (
@@ -85,7 +85,7 @@ export function OpportunityFilters({ filters, onFilterChange, provinces }: Filte
           <select
             value={filters.status}
             onChange={(e) => onFilterChange({ ...filters, status: e.target.value as OpportunityStatus | '' })}
-            className="px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white"
+            className="px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white text-gray-900"
           >
             <option value="">All Status</option>
             {statuses.map(s => (
@@ -99,7 +99,7 @@ export function OpportunityFilters({ filters, onFilterChange, provinces }: Filte
               placeholder="Min R"
               value={filters.minInvestment}
               onChange={(e) => onFilterChange({ ...filters, minInvestment: e.target.value })}
-              className="w-28 px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="w-28 px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900 placeholder-gray-400"
             />
             <span className="text-gray-400">-</span>
             <input
@@ -107,7 +107,7 @@ export function OpportunityFilters({ filters, onFilterChange, provinces }: Filte
               placeholder="Max R"
               value={filters.maxInvestment}
               onChange={(e) => onFilterChange({ ...filters, maxInvestment: e.target.value })}
-              className="w-28 px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="w-28 px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-900 placeholder-gray-400"
             />
           </div>
 

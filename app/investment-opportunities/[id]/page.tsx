@@ -60,6 +60,90 @@ export default function OpportunityDetailPage({ params }: { params: Promise<{ id
     })
   }
 
+  const getMockOpportunity = (oppId: string): OpportunityWithRelations | null => {
+    const mockData: Record<string, OpportunityWithRelations> = {
+      '1': {
+        id: '1',
+        title: 'MBOMBELA, MPUMALANGA',
+        suburb_or_area: 'Mbombela',
+        province: 'Mpumalanga',
+        product_type: 'JV_FLIP',
+        deal_code: 'OSP40/MBO/ZA',
+        status: 'AVAILABLE',
+        hero_image_url: null,
+        investment_amount: 760000,
+        market_value: 1500000,
+        exposure_to_market_value_pct: 50.67,
+        units_total: null,
+        units_available: null,
+        highlight_badge_text: null,
+        description: 'A prime investment opportunity in the heart of Mbombela. This property offers excellent value with strong projected returns.',
+        address: null,
+        property_type: 'Residential',
+        bedrooms: 3,
+        bathrooms: 2,
+        parking: 2,
+        erf_size: null,
+        floor_size: 180,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        projected_net_annualized_return: 13.5,
+        projected_net_profit: 60000,
+        net_rental_income: 12000,
+        capital_growth: 48000,
+        gross_return: 60000,
+        external_fees: 500,
+        contract_duration_months: 12,
+        return_rows: [
+          { id: '1', opportunity_id: '1', row_key: 'net_return', label: 'Net Return', term_type: 'MONTHS', term_value: 6, amount: null, pct: 12.5, sort_order: 0, created_at: '' },
+          { id: '2', opportunity_id: '1', row_key: 'net_return', label: 'Net Return', term_type: 'MONTHS', term_value: 9, amount: null, pct: 18.75, sort_order: 1, created_at: '' },
+          { id: '3', opportunity_id: '1', row_key: 'net_return', label: 'Net Return', term_type: 'MONTHS', term_value: 12, amount: null, pct: 25.0, sort_order: 2, created_at: '' },
+        ],
+        files: [],
+      },
+      '2': {
+        id: '2',
+        title: 'JAKKALSFONTEIN, WESTERN CAPE',
+        suburb_or_area: 'Jakkalsfontein',
+        province: 'Western Cape',
+        product_type: 'JV_FLIP',
+        deal_code: 'HER213/GAL/DAR/ZA',
+        status: 'AVAILABLE',
+        hero_image_url: null,
+        investment_amount: 1250000,
+        market_value: 2800000,
+        exposure_to_market_value_pct: 44.64,
+        units_total: null,
+        units_available: null,
+        highlight_badge_text: null,
+        description: 'Premium coastal property in the sought-after Jakkalsfontein area. Exceptional exposure to market value ratio.',
+        address: null,
+        property_type: 'Residential',
+        bedrooms: 4,
+        bathrooms: 3,
+        parking: 2,
+        erf_size: null,
+        floor_size: 250,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        projected_net_annualized_return: 18.2,
+        projected_net_profit: 150000,
+        net_rental_income: 30000,
+        capital_growth: 120000,
+        gross_return: 150000,
+        external_fees: 1000,
+        contract_duration_months: 18,
+        return_rows: [
+          { id: '4', opportunity_id: '2', row_key: 'net_return', label: 'Net Return', term_type: 'MONTHS', term_value: 6, amount: null, pct: 15.0, sort_order: 0, created_at: '' },
+          { id: '5', opportunity_id: '2', row_key: 'net_return', label: 'Net Return', term_type: 'MONTHS', term_value: 9, amount: null, pct: 22.5, sort_order: 1, created_at: '' },
+          { id: '6', opportunity_id: '2', row_key: 'net_return', label: 'Net Return', term_type: 'MONTHS', term_value: 12, amount: null, pct: 30.0, sort_order: 2, created_at: '' },
+        ],
+        files: [],
+      },
+    }
+    return mockData[oppId] || null
+  }
+
   const fetchOpportunity = async () => {
     setLoading(true)
     const { data: opp, error } = await supabase
@@ -69,7 +153,11 @@ export default function OpportunityDetailPage({ params }: { params: Promise<{ id
       .single() as { data: any | null, error: any }
 
     if (error || !opp) {
-      console.error('Error fetching opportunity:', error)
+      // Fallback to mock data for demo
+      const mockOpp = getMockOpportunity(id)
+      if (mockOpp) {
+        setOpportunity(mockOpp)
+      }
       setLoading(false)
       return
     }

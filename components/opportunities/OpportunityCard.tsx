@@ -10,6 +10,13 @@ const productTypeConfig: Record<ProductType, { gradient: string; badge: string; 
   RECOVERY: { gradient: 'from-purple-600 to-violet-700', badge: 'RECOVERY', icon: '🔄' },
   RENTAL_INCOME: { gradient: 'from-amber-500 to-orange-600', badge: 'RENTAL INCOME', icon: '🏢' },
   DEVELOPMENT: { gradient: 'from-rose-500 to-pink-600', badge: 'DEVELOPMENT', icon: '🏗️' },
+  FLIP_BREATHER: { gradient: 'from-teal-500 to-cyan-600', badge: 'FLIP BREATHER', icon: '⏸️' },
+  FLIP_INSTALMENT: { gradient: 'from-sky-500 to-blue-600', badge: 'FLIP INSTALMENT', icon: '📊' },
+  FLIP_JV: { gradient: 'from-emerald-500 to-green-600', badge: 'FLIP JV', icon: '🤝' },
+  RECOVERY_LEASEBACK: { gradient: 'from-violet-500 to-purple-600', badge: 'RECOVERY LEASEBACK', icon: '🔑' },
+  RECOVERY_INSTALMENT: { gradient: 'from-indigo-500 to-blue-600', badge: 'RECOVERY INSTALMENT', icon: '📈' },
+  RECOVERY_BOND: { gradient: 'from-fuchsia-500 to-pink-600', badge: 'RECOVERY BOND', icon: '🏦' },
+  ASSIST_TO_OWN: { gradient: 'from-orange-500 to-amber-600', badge: 'ASSIST TO OWN', icon: '🎯' },
 }
 
 function formatCurrency(amount: number): string {
@@ -69,43 +76,55 @@ export function OpportunityCard({ opportunity, isAuthenticated = false }: Opport
       </div>
 
       <div className="p-5">
-        <div className="grid grid-cols-3 gap-3 mb-5">
-          <div className="bg-gray-50 rounded-xl p-3 text-center">
-            <p className="text-[10px] text-gray-500 uppercase tracking-wider font-medium mb-1">Investment Amount</p>
-            <p className="text-lg font-bold text-gray-900">{formatCurrency(opportunity.investment_amount)}</p>
+        {/* Financial Metrics Grid - World-Class Alignment */}
+        <div className="grid grid-cols-3 gap-3 mb-6">
+          {/* Investment Amount */}
+          <div className="bg-gradient-to-b from-gray-50 to-gray-100/50 rounded-xl p-4 flex flex-col items-center justify-between h-[88px] border border-gray-100">
+            <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold text-center h-[24px] flex items-center">
+              Investment Amount
+            </p>
+            <p className="text-base font-bold text-gray-900 tracking-tight">
+              {formatCurrency(opportunity.investment_amount)}
+            </p>
           </div>
-          <div className="bg-gray-50 rounded-xl p-3 text-center">
-            <p className="text-[10px] text-gray-500 uppercase tracking-wider font-medium mb-1">Market Value</p>
-            <p className="text-lg font-bold text-gray-900">
+          {/* Market Value */}
+          <div className="bg-gradient-to-b from-gray-50 to-gray-100/50 rounded-xl p-4 flex flex-col items-center justify-between h-[88px] border border-gray-100">
+            <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold text-center h-[24px] flex items-center">
+              Market Value
+            </p>
+            <p className="text-base font-bold text-gray-900 tracking-tight">
               {opportunity.market_value ? formatCurrency(opportunity.market_value) : '—'}
             </p>
           </div>
-          <div className="bg-emerald-50 rounded-xl p-3 text-center border border-emerald-100">
-            <p className="text-[10px] text-emerald-600 uppercase tracking-wider font-medium mb-1">Exposure to MV</p>
-            <p className="text-lg font-bold text-emerald-600">
+          {/* Exposure to MV - Highlighted */}
+          <div className="bg-gradient-to-b from-emerald-50 to-emerald-100/50 rounded-xl p-4 flex flex-col items-center justify-between h-[88px] border-2 border-emerald-300 shadow-sm shadow-emerald-100">
+            <p className="text-[10px] text-emerald-700 uppercase tracking-widest font-bold text-center h-[24px] flex items-center">
+              Exposure to MV
+            </p>
+            <p className="text-lg font-bold text-emerald-600 tracking-tight">
               {exposurePct ? `${exposurePct.toFixed(1)}%` : '—'}
             </p>
           </div>
         </div>
 
         {terms.length > 0 && (
-          <div className="mb-5">
+          <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
-              <TrendingUp className="w-4 h-4 text-gray-400" />
-              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Projected Returns</span>
+              <TrendingUp className="w-4 h-4 text-emerald-500" />
+              <span className="text-xs font-bold text-gray-600 uppercase tracking-widest">Projected Returns</span>
             </div>
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-4">
-              <div className="grid grid-cols-3 gap-3">
+            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl p-4 shadow-lg">
+              <div className="grid grid-cols-3 gap-2">
                 {terms.slice(0, 3).map(term => {
                   const returnPct = getReturnForTerm(term)
                   return (
-                    <div key={term} className="text-center">
-                      <p className="text-gray-400 text-xs mb-1">{term} Months</p>
-                      <p className={`text-2xl font-bold ${
+                    <div key={term} className="text-center py-1">
+                      <p className="text-gray-400 text-[11px] font-medium mb-1.5">{term} Months</p>
+                      <p className={`text-xl font-bold tracking-tight ${
                         returnPct && returnPct >= 15 ? 'text-emerald-400' : 
                         returnPct && returnPct >= 10 ? 'text-amber-400' : 'text-white'
                       }`}>
-                        {returnPct ? `${returnPct.toFixed(2)}%` : '—'}
+                        {returnPct ? `${returnPct.toFixed(1)}%` : '—'}
                       </p>
                     </div>
                   )
